@@ -9,7 +9,7 @@ Skills only. No MCP server, hosted backend, OAuth flow, or app reference.
 - Name: Game Development Studio
 - Developer: Benjamin Michael Haire
 - Category: Developer Tools
-- Short description: Produce assets and diagnose game renders.
+- Short description: Build assets. Debug renders.
 - Website: https://github.com/theisegoria/game-development-studio-skills
 - Support: https://github.com/theisegoria/game-development-studio-skills/issues
 - Privacy: https://github.com/theisegoria/game-development-studio-skills/blob/main/PRIVACY.md
@@ -30,10 +30,11 @@ and has no publisher backend. In that environment it routes work and analyzes
 manifests, structured results, telemetry, metrics, and summaries supplied by
 the user. The listing discloses this boundary.
 
-OpenAI's submission guidance says to contact an OpenAI partner before
-submitting when the core value requires local execution, arbitrary local file
-access, hardware/application access, or offline operation. Do not hide or
-remove this disclosure to make a scan pass.
+OpenAI's current submission guidance explicitly accepts skills-only bundles.
+Reviewers still need an honest, reproducible contract: ChatGPT web can review
+the routing, planning, structured-analysis, and safe-fallback behavior, while
+local execution requires Codex plus the separately installed `game-dev` CLI.
+Do not hide or weaken that boundary to make an automated scan pass.
 
 ## Starter prompts
 
@@ -59,8 +60,27 @@ remove this disclosure to make a scan pass.
 ### 2. Audit a package before vendoring
 
 - Prompt: “Here is an asset manifest and verification result. Tell me whether
-  it is safe to vendor; do not write to my project.” Attach the public fixture
-  from the repository test documentation or paste equivalent JSON.
+  it is safe to vendor; do not write to my project.” Include this fixture in
+  the prompt:
+
+  ```json
+  {
+    "manifest": {
+      "schema": "game_dev.asset_package.v1",
+      "id": "signal-beacon@1.0.0+sha256-demo",
+      "name": "Signal Beacon",
+      "version": "1.0.0",
+      "license": "CC0-1.0",
+      "validation": { "valid": true }
+    },
+    "verification": {
+      "schema": "game_dev.package_verification.v1",
+      "ok": true,
+      "hashesVerified": true,
+      "closedRoster": true
+    }
+  }
+  ```
 - Expected skill: `game-asset-vendoring`.
 - Expected behavior: checks hash-verification status, license, validation,
   destination assumptions, and returns blockers plus the dry-run command.
@@ -134,7 +154,7 @@ remove this disclosure to make a scan pass.
 
 ## Release notes
 
-Initial 1.0.0 submission. Five skills route local game asset production,
+Version 1.0.1 submission. Five skills route local game asset production,
 canonical package vendoring, sealed capture diagnosis, and bounded performance
 analysis through the separately installed `game-dev` CLI. The plugin contains
 no MCP server or hosted service. Sensitive operations retain separate
@@ -148,8 +168,10 @@ requirement.
 - repository, support, privacy, and terms URLs publicly reachable
 - final ZIP created from the tagged repository
 - all five skills pass the local validator
-- icon and three screenshots pass manifest validation
+- icon and all three product screenshots pass manifest, provenance, dimension,
+  and closed-release checks
 - five positive and three negative tests entered
 - availability selected only where support and terms are ready
-- product-specific local execution disclosure reviewed with OpenAI partner
+- product-specific local execution disclosure included in the listing and
+  reviewer notes
 - policy attestations checked only after every field is verified

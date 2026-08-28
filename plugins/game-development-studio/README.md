@@ -1,22 +1,23 @@
 <p align="center">
-  <img src="plugins/game-development-studio/assets/icon.png" width="128" alt="Game Development Studio icon">
+  <img src="assets/icon.png" width="128" alt="Game Development Studio icon">
 </p>
 
 # Game Development Studio Skills
 
 Five local-first skills for game asset production, package vendoring, sealed
-render-capture diagnosis, and bounded performance work—without an MCP server.
+render-capture diagnosis, and bounded performance work through the inspectable
+`game-dev` CLI.
 
 The plugin gives ChatGPT and Codex the workflow language, approval model, and
 evidence discipline. Local execution uses the separately installed
 `game-dev` CLI; the plugin does not embed a daemon, hosted backend, provider
 credential, or standing permission.
 
-![Five-skill Game Development Studio suite](plugins/game-development-studio/assets/screenshots/01-skill-suite.png)
+![Five-skill Game Development Studio suite](assets/screenshots/01-skill-suite.png)
 
-![Stable local CLI contract and approval boundaries](plugins/game-development-studio/assets/screenshots/02-cli-contract.png)
+![Stable local CLI contract and approval boundaries](assets/screenshots/02-cli-contract.png)
 
-![Synthetic sealed-capture visual-debugging example](plugins/game-development-studio/assets/screenshots/03-visual-debugging.png)
+![Synthetic sealed-capture visual-debugging example](assets/screenshots/03-visual-debugging.png)
 
 The third image is a labelled synthetic validation fixture. It demonstrates
 the diagnostic workflow; it is not a target-game GPU, pixel, performance, or
@@ -37,7 +38,7 @@ human-review claim.
 Add this tagged marketplace:
 
 ```sh
-codex plugin marketplace add theisegoria/game-development-studio-skills --ref v1.0.0
+codex plugin marketplace add theisegoria/game-development-studio-skills --ref v1.0.1
 codex plugin marketplace list
 ```
 
@@ -77,7 +78,7 @@ Plans never become standing permission.
 ## Public plugin archive
 
 GitHub Releases includes
-`game-development-studio-plugin-1.0.0.zip`. It contains the plugin root
+`game-development-studio-plugin-1.0.1.zip`. It contains the plugin root
 (`.codex-plugin/`, `skills/`, assets, and policy files) and is the same
 skills-only shape prepared for OpenAI review.
 
@@ -85,8 +86,12 @@ Build and verify it locally:
 
 ```sh
 python3 scripts/verify.py
-python3 scripts/build_release.py /tmp/game-development-studio-plugin-1.0.0.zip
+python3 scripts/build_release.py /tmp/game-development-studio-plugin-1.0.1.zip
 ```
+
+`build_release.py` requires an explicit output path outside the exported
+repository (for example, under `/tmp`), so archive generation cannot alter the
+closed release tree it verifies.
 
 ## Evidence boundary
 
@@ -101,8 +106,8 @@ The skills are intentionally strict about claims:
 
 ## Privacy and support
 
-The plugin contains static instructions and assets. It has no Game Development
-Studio MCP server or publisher backend and sends no publisher analytics.
+The plugin contains static instructions and assets. It runs no publisher
+backend or resident Game Development Studio service and sends no publisher analytics.
 Explicit local provider calls connect directly from the user's machine and are
 subject to the provider's terms.
 
