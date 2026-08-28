@@ -1,27 +1,33 @@
-<p align="center">
-  <img src="assets/icon.png" width="128" alt="Game Development Studio icon">
-</p>
+# Game Development Studio
 
-# Game Development Studio Skills
+Game Development Studio is a screenshot-free, skills-only plugin for local
+game asset production, package vendoring, sealed render-capture diagnosis, and
+bounded performance work.
 
-Five local-first skills for game asset production, package vendoring, sealed
-render-capture diagnosis, and bounded performance work through the inspectable
-`game-dev` CLI.
+The five packaged skills provide workflow guidance, approval boundaries, and
+evidence discipline. They do not include an MCP server, hosted backend, UI,
+provider credential, shared provider account, hook, or automatic installation
+step. They never ask a user to paste or configure a provider key in a plugin
+conversation.
 
-The plugin gives ChatGPT and Codex the workflow language, approval model, and
-evidence discipline. Local execution uses the separately installed
-`game-dev` CLI; the plugin does not embed a daemon, hosted backend, provider
-credential, or standing permission.
+## Local execution boundary
 
-![Five-skill Game Development Studio suite](assets/screenshots/01-skill-suite.png)
+The plugin can route work and analyze user-supplied manifests, telemetry,
+metrics, capture summaries, and structured results. Executing local workflows
+requires the separately installed `game-dev` 1.0.2-or-newer CLI in an
+environment that exposes the chosen files and executable under the user's
+approval policy.
 
-![Stable local CLI contract and approval boundaries](assets/screenshots/02-cli-contract.png)
+Provider spend, every local file write, project execution, GPU work, and
+performance measurement remain separately authorized for each invocation. A
+plan never becomes standing permission. Commands that lack a `--confirm` flag
+still require explicit conversation-level authorization for their resolved
+inputs and destinations.
 
-![Synthetic sealed-capture visual-debugging example](assets/screenshots/03-visual-debugging.png)
-
-The third image is a labelled synthetic validation fixture. It demonstrates
-the diagnostic workflow; it is not a target-game GPU, pixel, performance, or
-human-review claim.
+Optional provider work uses only a preconfigured credential and provider
+account controlled by the user. The local CLI sends an authorized request
+directly to the selected independent provider; the publisher does not proxy,
+pool, receive, share, or resell provider credentials or access.
 
 ## Included skills
 
@@ -33,88 +39,12 @@ human-review claim.
 | `game-visual-debugging` | Adapters, captures, telemetry, semantic buffers, and heatmaps |
 | `game-performance-optimization` | Comparable metrics and finite optimization goals |
 
-## Install as a Codex plugin
-
-Add this tagged marketplace:
-
-```sh
-codex plugin marketplace add theisegoria/game-development-studio-skills --ref v1.0.1
-codex plugin marketplace list
-```
-
-Restart the ChatGPT desktop app, open the Plugins Directory, choose the
-**Game Development Studio** marketplace, and install
-**Game Development Studio**. The repository follows the standard marketplace
-layout at `.agents/plugins/marketplace.json`.
-
-To inspect before installation:
-
-```sh
-git clone https://github.com/theisegoria/game-development-studio-skills.git
-cd game-development-studio-skills
-python3 scripts/verify.py
-```
-
-No command in this repository automatically installs into a Codex profile or a
-game project.
-
-## ChatGPT and local execution
-
-This is a skills-only plugin. In ChatGPT without a local execution environment,
-it can route workflows and analyze manifests, structured results, telemetry,
-metrics, and summaries supplied by the user. It must not pretend that a local
-CLI, Blender, provider, game harness, GPU lane, or file write ran.
-
-In Codex with `game-dev` installed, the skills use its JSON/JSONL command
-contract. Sensitive capabilities remain separate per invocation:
-
-- `--confirm` for local mutation or process execution
-- `--approve-spend` plus `--spend-limit-cents N` for paid providers
-- `--allow-gpu` for a declared GPU scenario
-- `--allow-performance` for hardware-performance capture
-
-Plans never become standing permission.
-
-## Public plugin archive
-
-GitHub Releases includes
-`game-development-studio-plugin-1.0.1.zip`. It contains the plugin root
-(`.codex-plugin/`, `skills/`, assets, and policy files) and is the same
-skills-only shape prepared for OpenAI review.
-
-Build and verify it locally:
-
-```sh
-python3 scripts/verify.py
-python3 scripts/build_release.py /tmp/game-development-studio-plugin-1.0.1.zip
-```
-
-`build_release.py` requires an explicit output path outside the exported
-repository (for example, under `/tmp`), so archive generation cannot alter the
-closed release tree it verifies.
-
 ## Evidence boundary
-
-The skills are intentionally strict about claims:
 
 - static inspection is not Blender, GPU, or pixel evidence
 - a decoded raster is not a human visual judgement
 - adapter-reported GPU identity is not independent hardware proof
 - arithmetic improvement is not causality or broad performance proof
-- Store submission is not publication until OpenAI approves and the developer
-  publishes the approved version
-
-## Privacy and support
-
-The plugin contains static instructions and assets. It runs no publisher
-backend or resident Game Development Studio service and sends no publisher analytics.
-Explicit local provider calls connect directly from the user's machine and are
-subject to the provider's terms.
 
 See [Privacy](PRIVACY.md), [Terms](TERMS.md), [Support](SUPPORT.md), and
 [Security](SECURITY.md).
-
-## License
-
-MIT © 2026 Benjamin Michael Haire. Provider services, generated content, input
-assets, and vendored assets remain subject to their own terms and licenses.
